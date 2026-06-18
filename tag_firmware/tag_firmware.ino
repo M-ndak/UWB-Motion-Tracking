@@ -1,3 +1,27 @@
+/*
+ * UWB Motion Tracking — Tag Firmware
+ * Based on ESP32-DWM3000-UWB-Indoor-RTLS-Tracker by Circuit Digest
+ * Original: https://github.com/Circuit-Digest/ESP32-DWM3000-UWB-Indoor-RTLS-Tracker
+ * Original licensed under GNU GPL v3
+ *
+ * Modified by Mehrak Singh Sachdev, 2026
+ * Changes:
+ *   - Scalable anchor system via NUM_ANCHORS define
+ *   - FILTER_SIZE reduced from 30 to 5 for faster valid readings
+ *   - anyAnchorHasValidData() replaces allAnchorsHaveValidData()
+ *     so WiFi data transmits as soon as one anchor has a reading
+ *   - MAX_DISTANCE increased to 1500cm for larger rooms
+ *   - WiFi connection non-blocking — ranging continues offline
+ *   - JSON packet includes raw distance, RSSI, first-path RSSI,
+ *     round time, reply time, clock offset per anchor
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+ */
+
+
+
 #include <SPI.h>
 #include <WiFi.h>
 #include <WiFiClient.h>

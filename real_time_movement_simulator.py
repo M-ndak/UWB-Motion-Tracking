@@ -1,3 +1,24 @@
+# UWB Motion Tracking — Real-time Movement Visualiser
+# Based on ESP32-DWM3000-UWB-Indoor-RTLS-Tracker by Circuit Digest
+# Original: https://github.com/Circuit-Digest/ESP32-DWM3000-UWB-Indoor-RTLS-Tracker
+# Original licensed under GNU GPL v3
+#
+# Rewritten by Mehrak Singh Sachdev, 2026
+# Changes:
+#   - Complete rewrite of visualiser using matplotlib animation
+#   - TCP server with timeout for clean shutdown
+#   - Trilateration works with 2 or 3 valid anchors
+#   - Skips anchors with distance < MIN_VALID_DISTANCE (filters stale zeros)
+#   - Per-anchor RSSI overlay on plot
+#   - Position trail history (configurable length)
+#   - Graceful fallback if floor plan image missing
+#   - Status text showing valid anchors and distances in real time
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License.
+
+
 import socket
 import threading
 import json

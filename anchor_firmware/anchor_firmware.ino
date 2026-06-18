@@ -1,3 +1,25 @@
+/*
+ * UWB Motion Tracking — Anchor Firmware
+ * Based on ESP32-DWM3000-UWB-Indoor-RTLS-Tracker by Circuit Digest
+ * Original: https://github.com/Circuit-Digest/ESP32-DWM3000-UWB-Indoor-RTLS-Tracker
+ * Original licensed under GNU GPL v3
+ *
+ * Modified by Mehrak Singh Sachdev, 2026
+ * Changes:
+ *   - t_roundB and t_replyB changed to long long to prevent overflow
+ *   - System status cleared BEFORE reading frame fields (race condition fix)
+ *   - RX timestamp read BEFORE sending response (captures T2 correctly)
+ *   - Increased RESPONSE_TIMEOUT_MS from 10 to 50 for reliability
+ *   - Added radio soft reset on max retry
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+ */
+
+
+
+ 
 #include <Arduino.h>
 #include <SPI.h>
 
